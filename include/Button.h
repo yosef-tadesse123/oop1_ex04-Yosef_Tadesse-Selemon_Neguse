@@ -4,7 +4,11 @@
 class Button : public Objects
 {
 public:
-	Button(sf::Texture& texture);
+	Button(sf::Texture& texture, char symbol);
+	char getSymbol();
+
+
 	~Button();
 private:
+	char m_symbol;
 };

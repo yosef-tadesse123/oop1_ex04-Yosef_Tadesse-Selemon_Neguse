@@ -38,12 +38,80 @@ void Board::initilaizeTiles()
 
 }
 
+
+void Board::respond(sf::Vector2f mousePressed, char& symbol)
+{
+    for (size_t i = 0; i < m_tiles.size(); i++)
+    {
+        sf::Sprite sprite;
+
+        if (symbol == 'T')
+        {
+            sprite.setTexture(sf::Texture());
+            m_tiles[i].setSprite(sprite);
+            m_tiles[i].setSymbol(' ');
+            m_tiles[i].setIsEraseble(false);
+            continue;
+        }
+        else if (symbol == 'E')
+        {
+            if (m_tiles[i].getSymbol() != ' ')
+            {
+                m_tiles[i].setIsEraseble(true);
+            }
+        }
+        else
+        {
+            m_tiles[i].setIsEraseble(false);
+        }
+
+
+        if (m_tiles[i].getSprite().getGlobalBounds().contains(mousePressed))
+        {
+
+            switch (symbol)
+            {
+            case 'D':
+                sprite.setTexture(Resources::getInstance().getGameObjectTexture()[0]);
+                break;
+            case '#':
+                sprite.setTexture(Resources::getInstance().getGameObjectTexture()[1]);
+                break;
+            case '@':
+                sprite.setTexture(Resources::getInstance().getGameObjectTexture()[2]);
+                break;
+            case '/':
+                sprite.setTexture(Resources::getInstance().getGameObjectTexture()[3]);
+                break;
+            case '!':
+                sprite.setTexture(Resources::getInstance().getGameObjectTexture()[4]);
+                break;
+            case 'E':
+                sprite.setTexture(sf::Texture());
+                m_tiles[i].setSymbol(' ');
+                m_tiles[i].setIsEraseble(false);
+                m_tiles[i].setSprite(sprite);
+                return;
+            default:
+                break;
+            }
+            
+            m_tiles[i].setSymbol(symbol);
+            m_tiles[i].setSprite(sprite);
+            break;
+        }
+
+    }
+
+}
+
+
 void Board::draw(sf::RenderWindow& window) {
     window.draw(m_background);
 
     for (size_t i = 0; i < m_tiles.size(); i++)
     {
-        window.draw(m_tiles[i].getSprite());
+        m_tiles[i].draw(window);
     }
 
 

@@ -9,6 +9,7 @@ public:
 	Menu(sf::Texture& textur = Resources::getInstance().getGeneralTexture()[2]);
 	void initilaize(float cols, float rows);
 	void draw(sf::RenderWindow& window);
+	void respond(sf::Vector2f mousePressed, char& symbol);
 
 	~Menu();
 

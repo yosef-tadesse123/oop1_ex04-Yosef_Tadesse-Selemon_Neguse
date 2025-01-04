@@ -12,6 +12,8 @@ public:
 private:
 	void runEdit();
 
+	char m_symbol;
+
 	Board m_board;
 	Menu m_menu;
 	Window m_window;

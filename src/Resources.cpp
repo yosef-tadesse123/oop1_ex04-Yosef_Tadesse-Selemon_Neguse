@@ -13,7 +13,7 @@ Resources::Resources() {
 	loadFromFile(fileNames, m_gameObjectTexture);
 
 
-	fileNames = { "Eraser.png", "Trash.png", "Save.png" };
+	fileNames = { "Eraser.png", "Trash.png", "Save.png", "Hover.png", "HoverErase.png"};
 	loadFromFile(fileNames, m_toolBarTexture);
 }
 

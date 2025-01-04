@@ -26,20 +26,45 @@ void Window::eventFunc() {
 			close();
 			exit(EXIT_SUCCESS);
 			break;
+		case sf::Event::MouseButtonReleased:
+			checkMouseReleased(event);
+			return;
 		}
 	}
+	m_mousePressed.x = -1;
+	m_mousePressed.y = -1;
 }
 
-// Closes the window.
-//----------------------------------------------------------------
-void Window::close() {
-	m_window.close();
+//------------------------------------------------------------------//
+// checkMouseReleased
+void Window::checkMouseReleased(sf::Event event) {
+
+	switch (event.mouseButton.button)
+	{
+	case sf::Mouse::Button::Left:
+		m_mousePressed = sf::Vector2f(m_window.mapPixelToCoords({ event.mouseButton.x, event.mouseButton.y }));
+		return;
+	}
+	m_mousePressed.x = -1;
+	m_mousePressed.y = -1;
 }
 
 // Returns the reference to the window object.
 //----------------------------------------------------------------
 sf::RenderWindow& Window::getWindow() {
 	return  m_window;
+}
+
+//return mouse position 
+//----------------------------------------------------------------
+sf::Vector2f Window::getMousePressed() {
+	return m_mousePressed;
+}
+
+// Closes the window.
+//----------------------------------------------------------------
+void Window::close() {
+	m_window.close();
 }
 
 // Clears the window.

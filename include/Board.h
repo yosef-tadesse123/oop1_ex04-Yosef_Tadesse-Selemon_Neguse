@@ -9,6 +9,7 @@ public:
 	void draw(sf::RenderWindow& window);
 
 	void initilaize(float cols, float rows);
+	void respond(sf::Vector2f mousePressed, char& symbol);
 
 	~Board();
 

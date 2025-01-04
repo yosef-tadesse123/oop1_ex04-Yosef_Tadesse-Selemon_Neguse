@@ -20,31 +20,28 @@ Menu::Menu(sf::Texture& texture)
 		switch (line[i])
 		{
 		case 'D'://door
-			m_buttons.push_back(Button(Resources::getInstance().getGameObjectTexture()[0]));
+			m_buttons.push_back(Button(Resources::getInstance().getGameObjectTexture()[0],'D'));
 			break;
 		case '#'://wall
-			m_buttons.push_back(Button(Resources::getInstance().getGameObjectTexture()[1]));
+			m_buttons.push_back(Button(Resources::getInstance().getGameObjectTexture()[1],'#'));
 			break;
 		case '@'://rock
-			m_buttons.push_back(Button(Resources::getInstance().getGameObjectTexture()[2]));
+			m_buttons.push_back(Button(Resources::getInstance().getGameObjectTexture()[2],'@'));
 			break;
 		case '/'://robot
-			m_buttons.push_back(Button(Resources::getInstance().getGameObjectTexture()[3]));
+			m_buttons.push_back(Button(Resources::getInstance().getGameObjectTexture()[3],'/'));
 			break;
 		case '!'://enemy
-			m_buttons.push_back(Button(Resources::getInstance().getGameObjectTexture()[4]));
+			m_buttons.push_back(Button(Resources::getInstance().getGameObjectTexture()[4],'!'));
 			break;
 		default:
 			break;
 		}
 	}
 
-	for (size_t i = 0; i < Resources::getInstance().gettoolBarTexture().size(); i++)
-	{
-		m_buttons.push_back(Button(Resources::getInstance().gettoolBarTexture()[i]));
-	}
-
-
+	m_buttons.push_back(Button(Resources::getInstance().gettoolBarTexture()[0],'E'));
+	m_buttons.push_back(Button(Resources::getInstance().gettoolBarTexture()[1],'T'));
+	m_buttons.push_back(Button(Resources::getInstance().gettoolBarTexture()[2],'S'));
 }
 
 void Menu::initilaize(float cols, float rows)
@@ -58,6 +55,19 @@ void Menu::initilaize(float cols, float rows)
 		m_buttons[i].setPosition({ cols+ (i+1)*cols*5, 3.f*rows});
 	}
 
+}
+
+void Menu::respond(sf::Vector2f mousePressed, char& symbol)
+{
+	
+	for (size_t i = 0; i < m_buttons.size(); i++)
+	{
+		if (m_buttons[i].getSprite().getGlobalBounds().contains(mousePressed))
+		{
+			symbol = m_buttons[i].getSymbol();
+			return;
+		}
+	}
 }
 
 void Menu::draw(sf::RenderWindow& window)

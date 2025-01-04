@@ -3,6 +3,7 @@
 #include "Controller.h"
 
 Controller::Controller()
+	:m_symbol(' ')
 {
 	float rows, cols;
 
@@ -28,8 +29,13 @@ void Controller::runEdit()
 	{
 		m_window.clear();
 
+		m_menu.respond(m_window.getMousePressed(), m_symbol);
+		m_board.respond(m_window.getMousePressed(), m_symbol);
+
+
 		m_board.draw(m_window.getWindow());
 		m_menu.draw(m_window.getWindow());
+
 
 		m_window.display();
 		m_window.eventFunc();

@@ -48,10 +48,12 @@ void Menu::initilaize(float cols, float rows)
 {
 	setPosition({ cols, 2.5f * rows });
 	scale( cols / 21.5f, rows / 200 );
+	scale(1.0f, 1.0f);
 
 	for (size_t i = 0; i < m_buttons.size(); i++)
 	{
 		m_buttons[i].scale(cols / 15, rows / 15);
+		//m_buttons[i].scale(1.0f, 1.0f);
 		m_buttons[i].setPosition({ cols+ (i+1)*cols*5, 3.f*rows});
 	}
 

@@ -25,17 +25,17 @@ Controller::Controller()
 
 void Controller::runEdit()
 {
+	m_symbol = ' ';
+
 	while (m_window.isOpen())
 	{
 		m_window.clear();
 
 		m_menu.respond(m_window.getMousePressed(), m_symbol);
-		m_board.respond(m_window.getMousePressed(), m_symbol);
-
+		m_board.respond(m_window.getMousePressed(), m_window.getWindow(), m_symbol);
 
 		m_board.draw(m_window.getWindow());
 		m_menu.draw(m_window.getWindow());
-
 
 		m_window.display();
 		m_window.eventFunc();

@@ -2,7 +2,8 @@
 #include "Resources.h"
 #include <iostream>
 
-//constractor of resources file are loading files
+//--------------------------------------- Constructor ------------------------------------------------
+// Loads textures from files and initializes the resources.
 Resources::Resources() {
 
 	std::vector<std::string> fileNames{ "Background.png", "Tile.png", "Menu.png"};
@@ -18,7 +19,8 @@ Resources::Resources() {
 }
 
 
-//loadFromFile file function
+//--------------------------------------- loadFromFile ------------------------------------------------
+// Loads textures from the specified file names into the provided texture vector.
 void Resources::loadFromFile(std::vector<std::string> fileNames, std::vector<sf::Texture>& textures) {
 
 	sf::Texture texture;
@@ -30,17 +32,20 @@ void Resources::loadFromFile(std::vector<std::string> fileNames, std::vector<sf:
 		textures.push_back(texture);
 	}
 }
-
+//--------------------------------------- getGeneralTexture ------------------------------------------------
+// Returns a reference to the vector of general textures.
 std::vector<sf::Texture>& Resources::getGeneralTexture() {
 
 	return m_generalTexture;
 }
-
+//--------------------------------------- getGameObjectTexture ------------------------------------------------
+// Returns a reference to the vector of game object textures
 std::vector<sf::Texture>& Resources::getGameObjectTexture() {
 
 	return m_gameObjectTexture;
 }
-
+//--------------------------------------- getToolBarTexture ------------------------------------------------
+// Returns a reference to the vector of toolbar textures.
 std::vector<sf::Texture>& Resources::gettoolBarTexture() {
 
 	return m_toolBarTexture;

@@ -1,0 +1,43 @@
+-------------------------------------------
+ OOP1_EX04
+-------------------------------------------
+ 1. Authors: Yosef Tadesse (ID: 328858048), Selemon Neguse (ID: 324734433)
+
+ 2. General Explanation:
+ This project is a level editor for a game. The program allows users to create and edit game boards 
+ by placing objects on a grid. Users can set the dimensions of the board, select objects from a menu, 
+ and place them on the grid. The program enforces rules such as allowing only one instance of certain 
+ objects. Additional features include an eraser tool for removing objects and a clear button to reset the board.
+
+ 3. Files Created:
+ - Board.h/cpp: Manages the game board and its tiles, including initialization and interactions.
+ - Button.h/cpp: Represents buttons in the menu for object selection.
+ - Controller.h/cpp: Handles the main program logic, including user input and game board updates.
+ - Main.cpp: Entry point for the application.
+ - Menu.h/cpp: Creates and manages the menu where objects can be selected.
+ - Objects.h/cpp: Base class for all drawable objects, managing common properties like position and scale.
+ - Resources.h/cpp: Loads and manages all game textures and resources.
+ - Tile.h/cpp: Represents individual tiles on the board, including hover and erase states.
+ - Wall.h/cpp: Represents wall objects that can be placed on the board.
+ - Window.h/cpp: Manages the application window and rendering logic.
+
+ 4. Data Structures:
+ - Vector: Used to manage lists of objects like tiles and buttons.
+ - Sprite: Represents individual drawable elements like tiles, buttons, and hover effects.
+ - Class Hierarchy:
+   - Objects: Base class for drawable entities.
+   - Derived Classes: Board, Tile, Menu, Button, Wall.
+
+ 5. Algorithms:
+ The program efficiently detects user interactions using bounding box collision detection for sprites.
+ For example, when the user clicks on a tile, the program checks only the relevant area of the board,
+ ensuring performance is maintained even for large grids.
+
+ 6. Design:
+ The project is designed with a modular architecture. Key components include:
+ - Board: Manages the grid and tiles.
+ - Menu: Handles object selection.
+ - Controller: Oversees the main loop and orchestrates interactions between components.
+ - Window: Manages rendering and user input.
+ The `Resources` class ensures that textures are loaded once and reused efficiently across the application.
+

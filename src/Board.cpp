@@ -4,11 +4,15 @@
 #include <iostream>
 #include <fstream>
 
+//-------------------------------------- Board ---------------------------------------------
+// Constructor: Initializes the board with a default background texture.
 Board::Board()
     :m_background(Resources::getInstance().getGeneralTexture()[0])
 {
 }
 
+//--------------------------------------- initialize ------------------------------------------------
+// Initializes the board with columns, rows, tiles, and scaling.
 void Board::initilaize(float cols, float rows)
 {
     m_cols = cols;
@@ -16,7 +20,8 @@ void Board::initilaize(float cols, float rows)
     initilaizeTiles();
     scale();
 }
-
+//--------------------------------------- initializeTiles ------------------------------------------------
+// Creates and positions the tiles based on board dimensions.
 void Board::initilaizeTiles()
 {
 
@@ -38,7 +43,8 @@ void Board::initilaizeTiles()
     }
 
 }
-
+//--------------------------------------- respond ------------------------------------------------
+// Handles user interactions such as saving, clearing, or updating tiles.
 void Board::respond(sf::Vector2f mousePressed, sf::RenderWindow& window, char& symbol)
 {
     if (symbol == 'S')
@@ -75,7 +81,8 @@ void Board::respond(sf::Vector2f mousePressed, sf::RenderWindow& window, char& s
         }
     }
 }
-
+//--------------------------------------- updateTile ------------------------------------------------
+// Updates the tile's sprite and symbol based on user input.
 void Board::updateTile(char symbol, int i) {
     sf::Sprite sprite;
     switch (symbol) {
@@ -112,7 +119,8 @@ void Board::updateTile(char symbol, int i) {
     m_tiles[i].setSprite(sprite);
 }
 
-
+//--------------------------------------- removeRobot ------------------------------------------------
+// Removes the first robot found on the board
 void Board::removeRobot() {
     sf::Sprite sprite;
     sprite.setTexture(sf::Texture());
@@ -127,7 +135,8 @@ void Board::removeRobot() {
     }
 }
 
-
+//--------------------------------------- saveBoard ------------------------------------------------
+// Saves the board's state to a text file.
 void Board::saveBoard() {
     // Open file in write mode, which truncates the file if it already exists
     std::ofstream file("Board.txt", std::ios::out);
@@ -145,10 +154,10 @@ void Board::saveBoard() {
         file << '\n';
     }
 
-    // Close the file explicitly (optional)
     file.close();
 }
-
+//--------------------------------------- draw ------------------------------------------------
+// Draws the board's background and all tiles on the window.
 void Board::draw(sf::RenderWindow& window) {
     window.draw(m_background);
 
@@ -160,11 +169,15 @@ void Board::draw(sf::RenderWindow& window) {
 
 }
 
+//--------------------------------------- scale ------------------------------------------------
+// Scales the board's background based on its dimensions.
 void Board::scale()
 {
+    m_background.setScale(1.0f, 1.0f);
     m_background.scale(m_cols / 10.f, m_rows / 10.f);
 }
-
+//--------------------------------------- Destructor ------------------------------------------------
+// Destructor: Cleans up the board's resources.
 Board::~Board()
 {
 }

@@ -2,7 +2,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
+//--------------------------------------- Constructor ------------------------------------------------
+// Initializes the menu with buttons based on the "Toolbar.txt" file.
 Menu::Menu(sf::Texture& texture)
 	:Objects(texture)
 {
@@ -43,12 +44,13 @@ Menu::Menu(sf::Texture& texture)
 	m_buttons.push_back(Button(Resources::getInstance().gettoolBarTexture()[1],'T'));
 	m_buttons.push_back(Button(Resources::getInstance().gettoolBarTexture()[2],'S'));
 }
-
+//--------------------------------------- initialize ------------------------------------------------
+// Initializes the menu's position, scale, and button layout.
 void Menu::initilaize(float cols, float rows)
 {
+	Objects::getSprite().setScale(1.0f, 1.0f);
 	setPosition({ cols, 2.5f * rows });
 	scale( cols / 21.5f, rows / 200 );
-	scale(1.0f, 1.0f);
 
 	for (size_t i = 0; i < m_buttons.size(); i++)
 	{
@@ -58,7 +60,8 @@ void Menu::initilaize(float cols, float rows)
 	}
 
 }
-
+//--------------------------------------- respond ------------------------------------------------
+// Updates the symbol based on the button clicked.
 void Menu::respond(sf::Vector2f mousePressed, char& symbol)
 {
 	
@@ -71,7 +74,8 @@ void Menu::respond(sf::Vector2f mousePressed, char& symbol)
 		}
 	}
 }
-
+//--------------------------------------- draw ------------------------------------------------
+// Draws the menu and its buttons on the window.
 void Menu::draw(sf::RenderWindow& window)
 {
 	Objects::draw(window);
@@ -81,7 +85,8 @@ void Menu::draw(sf::RenderWindow& window)
 		m_buttons[i].draw(window);
 	}
 }
-
+//--------------------------------------- Destructor ------------------------------------------------
+// Cleans up the menu's resources.
 Menu::~Menu()
 {
 }

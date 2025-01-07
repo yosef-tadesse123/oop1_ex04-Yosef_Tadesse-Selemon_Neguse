@@ -2,6 +2,8 @@
 #include <iostream>
 #include "Controller.h"
 
+//--------------------------------------- Constructor ------------------------------------------------
+// Initializes the controller, board, menu, and window, and starts the edit mode.
 Controller::Controller()
 	:m_symbol(' ')
 {
@@ -22,7 +24,8 @@ Controller::Controller()
 	}
 
 }
-
+//--------------------------------------- runEdit ------------------------------------------------
+// Runs the edit mode where the user interacts with the board and menu.
 void Controller::runEdit()
 {
 	m_symbol = ' ';
@@ -41,7 +44,8 @@ void Controller::runEdit()
 		m_window.eventFunc();
 	}
 }
-
+//--------------------------------------- Destructor ------------------------------------------------
+// Cleans up the controller's resources.
 Controller::~Controller()
 {
 }
